@@ -1,0 +1,120 @@
+*:not(head, script) {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: normal;
+  color: black;
+  background-color: white;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+main.background {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1.5rem 4rem;
+}
+
+.date-and-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 4.5rem;
+  border: 2px solid black;
+  border-radius: 2rem;
+  gap: 1rem;
+  text-wrap: nowrap;
+}
+
+.date-and-time .time {
+  font-weight: bold;
+}
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.dashboard-user {
+  font-size: 4rem;
+}
+
+.dashboard-modules {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.dashboard-modules > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0;
+  aspect-ratio: 1/1.5;
+  padding: 1.5rem 0.75rem;
+  border-radius: 1rem;
+  border: 2px solid black;
+  gap: 0.5rem;
+}
+
+.dashboard-modules > div h2 {
+  font-size: 2rem;
+}
+
+.notes-module textarea {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  border: 2px solid black;
+  border-radius: 0.75rem;
+  resize: none;
+}
+
+.background-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  gap: 0.5rem;
+}
+
+.background-theme {
+  display: flex;
+  flex: 1 1 0;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 0.75rem;
+  gap: 1rem;
+}
+
+.background-theme input {
+  border: 2px solid black;
+  border-radius: 0.25rem;
+}
+
+.background-controls button {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 0.75rem;
+  gap: 1rem;
+}

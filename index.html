@@ -8,7 +8,46 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="./js/main.js"></script>
+    <main class="background">
+      <div class="date-and-time">
+        <p class="time">10:10</p>
+        <p class="date">1 april 2024</p>
+      </div>
+      <div class="dashboard-main">
+        <h1 class="dashboard-user">x Dashboard</h1>
+        <div class="dashboard-modules">
+          <div class="links-module">
+            <h2>Snabblänkar</h2>
+            <div class="link-list"></div>
+            <button type="button"><i>ICO</i> Lägg till länk</button>
+          </div>
+          <div class="weather-module">
+            <h2>Dagens väder</h2>
+            <div class="weather-list"></div>
+          </div>
+          <div class="custom-module">
+            <h2>Custom module</h2>
+            <!--https://github.com/public-apis/public-apis?tab=readme-ov-file#finance-->
+          </div>
+          <div class="notes-module">
+            <label for="notes-text-area"><h2>Antäckningar</h2></label>
+            <textarea name="notes-text-area" id="notes-text-area"></textarea>
+          </div>
+        </div>
+      </div>
+      <form class="background-controls">
+        <div class="background-theme">
+          <label for="background-theme-input"><i>ICO</i></label>
+          <input
+            type="text"
+            name="background-theme-input"
+            id="background-theme-input"
+          />
+        </div>
+        <button type="submit"><i>ICO</i> Slumpa ny bakgrund</button>
+      </form>
+    </main>
+    <!-- <div id="app"></div> -->
+    <!-- <script type="module" src="./js/main.js"></script> -->
   </body>
 </html>
