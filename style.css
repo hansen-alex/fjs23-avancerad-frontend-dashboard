@@ -25,11 +25,7 @@ main.background {
   width: 100%;
   min-height: 100vh;
   padding: 1.5rem 4rem;
-
   background-size: cover;
-  /* background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; */
 }
 
 .date-and-time {
@@ -56,7 +52,21 @@ main.background {
 }
 
 .dashboard-user {
+  max-width: 100%;
+  padding: 0.5rem 2rem;
   font-size: 3rem;
+  border-radius: 1.5rem;
+  transition: 0.3s;
+  text-align: center;
+  outline: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dashboard-user:hover,
+.dashboard-user:focus {
+  background-color: lightgray;
 }
 
 .dashboard-modules {
@@ -71,7 +81,7 @@ main.background {
   flex-direction: column;
   align-items: center;
   flex: 1 1 0;
-  /* height: 32rem; */
+  height: 32rem;
   padding: 1.5rem 0.75rem;
   border-radius: 1rem;
   border: 2px solid black;
