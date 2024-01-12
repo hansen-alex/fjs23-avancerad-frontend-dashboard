@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
 
+:root {
+  --module-background-color: rgba(255, 255, 255, 0.5);
+}
+
 *:not(head, script) {
   box-sizing: border-box;
   padding: 0;
@@ -9,7 +13,6 @@
   font-size: 1rem;
   font-weight: normal;
   color: black;
-  background-color: white;
 }
 
 body {
@@ -33,10 +36,11 @@ main.background {
   justify-content: center;
   align-items: center;
   padding: 0.25rem 4.5rem;
-  border: 2px solid black;
   border-radius: 2rem;
   gap: 1rem;
   text-wrap: nowrap;
+  background-color: var(--module-background-color);
+  backdrop-filter: blur(4px);
 }
 
 .date-and-time .time {
@@ -62,6 +66,9 @@ main.background {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
 }
 
 .dashboard-user:hover,
@@ -84,9 +91,10 @@ main.background {
   height: 32rem;
   padding: 1.5rem 0.75rem;
   border-radius: 1rem;
-  border: 2px solid black;
   gap: 0.5rem;
   text-align: center;
+  background-color: var(--module-background-color);
+  backdrop-filter: blur(4px);
 }
 
 .dashboard-modules > div h2 {
@@ -97,7 +105,6 @@ main.background {
   width: 100%;
   height: 100%;
   padding: 0.75rem;
-  border: 2px solid black;
   border-radius: 0.75rem;
   resize: none;
 }
@@ -111,12 +118,16 @@ main.background {
   gap: 0.5rem;
 }
 
+.background-controls > * {
+  background-color: var(--module-background-color);
+  backdrop-filter: blur(4px);
+}
+
 .background-theme {
   display: flex;
   flex: 1 1 0;
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid black;
   border-radius: 0.75rem;
   gap: 1rem;
 }
@@ -132,7 +143,6 @@ main.background {
   flex: 1 1 0;
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid black;
   border-radius: 0.75rem;
   gap: 1rem;
 }
