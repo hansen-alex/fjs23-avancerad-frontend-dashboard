@@ -31,6 +31,24 @@ const quickLinksStorage = [
   //   },
 ];
 
+// if (quickLinksList.childElementCount > 0) {
+//     const moveQuickLinkUpButton = quickLinksList.firstChild.querySelector(
+//       ".move-quick-link-up-button"
+//     );
+
+//     moveQuickLinkUpButton.disabled = true;
+//     moveQuickLinkUpButton.classList.add("move-quick-link-button-disabled");
+
+//     if (quickLinksList.childElementCount < 2) {
+//       const moveQuickLinkDownButton = quickLinksList.firstChild.querySelector(
+//         ".move-quick-link-down-button"
+//       );
+
+//       moveQuickLinkDownButton.disabled = true;
+//       moveQuickLinkDownButton.classList.add("move-quick-link-button-disabled");
+//     }
+//   }
+
 const removeQuickLink = (event) => {
   event.preventDefault();
 
@@ -52,12 +70,56 @@ const removeQuickLink = (event) => {
 
 const moveQuickLinkUp = (event) => {
   event.preventDefault();
-  console.log(`up`);
+
+  const quickLinkObject = event.target.closest(".quick-link");
+  const previousSibling = quickLinkObject.previousSibling;
+  if (previousSibling) {
+    quickLinksList.insertBefore(quickLinkObject, previousSibling);
+
+    //Update saved order
+    const userQuickLinks =
+      JSON.parse(localStorage.getItem("user-quick-links")) || [];
+
+    const quickLinkObjectIndex = userQuickLinks.findIndex(
+      (x) => x.id == quickLinkObject.id
+    );
+    const previousSiblingIndex = userQuickLinks.findIndex(
+      (x) => x.id == previousSibling.id
+    );
+
+    const tempQuickLinkObject = userQuickLinks[quickLinkObjectIndex];
+    userQuickLinks[quickLinkObjectIndex] = userQuickLinks[previousSiblingIndex];
+    userQuickLinks[previousSiblingIndex] = tempQuickLinkObject;
+
+    localStorage.setItem("user-quick-links", JSON.stringify(userQuickLinks));
+  }
 };
 
 const moveQuickLinkDown = (event) => {
   event.preventDefault();
-  console.log(`down`);
+
+  const quickLinkObject = event.target.closest(".quick-link");
+  const nextSibling = quickLinkObject.nextSibling;
+  if (nextSibling) {
+    quickLinksList.insertBefore(quickLinkObject, nextSibling.nextSibling);
+
+    //Update saved order
+    const userQuickLinks =
+      JSON.parse(localStorage.getItem("user-quick-links")) || [];
+
+    const quickLinkObjectIndex = userQuickLinks.findIndex(
+      (x) => x.id == quickLinkObject.id
+    );
+    const nextSiblingIndex = userQuickLinks.findIndex(
+      (x) => x.id == nextSibling.id
+    );
+
+    const tempQuickLinkObject = userQuickLinks[quickLinkObjectIndex];
+    userQuickLinks[quickLinkObjectIndex] = userQuickLinks[nextSiblingIndex];
+    userQuickLinks[nextSiblingIndex] = tempQuickLinkObject;
+
+    localStorage.setItem("user-quick-links", JSON.stringify(userQuickLinks));
+  }
 };
 
 const loadSingleQuickLink = (quickLinkData) => {
@@ -135,14 +197,10 @@ const loadSingleQuickLink = (quickLinkData) => {
 };
 
 const loadQuickLinks = () => {
-  //load from local storage
-  //quickLinksStorage ^^^
-  //need to order links, either with overwriting so top is top or order attribute. do first
+  quickLinksList.innerHTML = "";
 
   const userQuickLinks =
     JSON.parse(localStorage.getItem("user-quick-links")) || [];
-
-  quickLinksList.innerHTML = "";
 
   userQuickLinks.forEach((quickLinkData) => {
     loadSingleQuickLink(quickLinkData);

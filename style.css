@@ -134,7 +134,7 @@ main.background {
   min-height: 0;
   padding: 0.5rem;
   border-radius: 0.75rem;
-  background-color: rgb(211, 211, 211);
+  background-color: #d2d2d2;
 }
 
 .quick-link-favicon-title-wrapper {
@@ -156,6 +156,7 @@ main.background {
 
 .quick-link-title {
   font-size: 1.25rem;
+  /*TODO: ellipsis*/
 }
 
 .quick-link-controls {
@@ -206,6 +207,14 @@ main.background {
 .move-quick-link-up-button,
 .move-quick-link-down-button {
   flex: 1 1 0;
+}
+
+.move-quick-link-button-disabled {
+  pointer-events: none;
+}
+
+.move-quick-link-button-disabled i {
+  color: #d2d2d2;
 }
 
 .add-quick-link-button {
