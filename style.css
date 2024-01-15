@@ -74,7 +74,8 @@ main.background {
 
 .dashboard-user:hover,
 .dashboard-user:focus {
-  background-color: lightgray;
+  background-color: var(--module-background-color);
+  backdrop-filter: blur(4px);
 }
 
 .dashboard-modules {
@@ -136,6 +137,7 @@ main.background {
 .background-theme input {
   border: 2px solid black;
   border-radius: 0.25rem;
+  padding: 4px;
 }
 
 .background-controls button {
