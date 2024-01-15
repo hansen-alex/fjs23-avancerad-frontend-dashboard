@@ -25,6 +25,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+}
+
 main.background {
   display: flex;
   flex-direction: column;

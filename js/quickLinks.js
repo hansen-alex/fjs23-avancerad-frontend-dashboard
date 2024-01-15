@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const linkLlist = document.querySelector(".quick-links-list");
+const linkList = document.querySelector(".quick-links-list");
 const addQuickLinkButton = document.querySelector(".add-quick-link-button");
 
 const quickLinksStorage = [
@@ -38,15 +38,18 @@ const addQuickLink = () => {
 };
 addQuickLinkButton.addEventListener("click", addQuickLink);
 
-const removeQuickLink = () => {
+const removeQuickLink = (event) => {
+  event.preventDefault();
   console.log(`remove`);
 };
 
-const moveQuickLinkUp = () => {
+const moveQuickLinkUp = (event) => {
+  event.preventDefault();
   console.log(`up`);
 };
 
-const moveQuickLinkDown = () => {
+const moveQuickLinkDown = (event) => {
+  event.preventDefault();
   console.log(`down`);
 };
 
@@ -55,10 +58,13 @@ const loadQuickLinks = () => {
   //quickLinksStorage ^^^
   //need to order links, either with overwriting so top is top or order attribute. do first
 
-  linkLlist.innerHTML = "";
+  linkList.innerHTML = "";
+
   quickLinksStorage.forEach((quickLinkData) => {
-    const quickLink = document.createElement("div");
+    const quickLink = document.createElement("a");
     quickLink.classList.add("quick-link");
+    quickLink.href = `http://${quickLinkData.url}`;
+    quickLink.target = "_blank";
     quickLink.setAttribute("data-quick-link-id", quickLinkData.id);
 
     const quickLinkFaviconTitleWrapper = document.createElement("div");
@@ -124,7 +130,7 @@ const loadQuickLinks = () => {
     quickLinkControls.appendChild(moveQuickLinkControls);
     quickLink.appendChild(quickLinkControls);
 
-    linkLlist.appendChild(quickLink);
+    linkList.appendChild(quickLink);
   });
 };
 
