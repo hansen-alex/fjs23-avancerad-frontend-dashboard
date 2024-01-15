@@ -27,61 +27,105 @@ const quickLinksStorage = [
 ];
 
 const addQuickLink = () => {
-  //id time.now
+  //get url from user
+  //get title from user
+  const newQuickLink = {
+    id: Date.now(),
+    title: "",
+    url: "",
+  };
+  console.log(`add`);
 };
 addQuickLinkButton.addEventListener("click", addQuickLink);
 
-const removeQuickLink = () => {};
+const removeQuickLink = () => {
+  console.log(`remove`);
+};
 
-const moveQuickLink = () => {};
+const moveQuickLinkUp = () => {
+  console.log(`up`);
+};
+
+const moveQuickLinkDown = () => {
+  console.log(`down`);
+};
 
 const loadQuickLinks = () => {
   //load from local storage
   //quickLinksStorage ^^^
+  //need to order links, either with overwriting so top is top or order attribute. do first
 
-  linkLlist.innerHTML = `
-  ${quickLinksStorage
-    .map((quickLink) => {
-      return `
-    <div class="quick-link" data-quick-link-id="${quickLink.id}">
-        <div class="quick-link-favicon-title-wrapper">
-            <img
-                src="https://s2.googleusercontent.com/s2/favicons?domain_url=${quickLink.url}"
-                alt="${quickLink.title} icon"
-                class="quick-link-favicon"
-            />
-            <h3 class="quick-link-title">${quickLink.title}</h3>
-        </div>
-        <div class="quick-link-controls">
-            <button
-                class="remove-quick-link-button"
-                type="button"
-                title="Remove quick link"
-            >
-                <i class="material-symbols-outlined"> do_not_disturb_on </i>
-            </button>
-            <div class="move-quick-link-controls">
-                <button
-                    class="move-quick-link-up-button"
-                    type="button"
-                    title="Move quick link up"
-                >
-                    <i class="material-symbols-outlined"> arrow_drop_up </i>
-                </button>
-                <button
-                    class="move-quick-link-down-button"
-                    type="button"
-                    title="Move quick link down"
-                >
-                    <i class="material-symbols-outlined"> arrow_drop_down </i>
-                </button>
-            </div>
-        </div>
-    </div>
-    `;
-    })
-    .join("")}
-  `;
+  linkLlist.innerHTML = "";
+  quickLinksStorage.forEach((quickLinkData) => {
+    const quickLink = document.createElement("div");
+    quickLink.classList.add("quick-link");
+    quickLink.setAttribute("data-quick-link-id", quickLinkData.id);
+
+    const quickLinkFaviconTitleWrapper = document.createElement("div");
+    quickLinkFaviconTitleWrapper.classList.add(
+      "quick-link-favicon-title-wrapper"
+    );
+
+    const quickLinkFavicon = document.createElement("img");
+    quickLinkFavicon.classList.add("quick-link-favicon");
+    quickLinkFavicon.src = `https://s2.googleusercontent.com/s2/favicons?domain_url=${quickLinkData.url}`;
+    quickLinkFavicon.alt = `${quickLinkData.title} icon`;
+    quickLinkFaviconTitleWrapper.appendChild(quickLinkFavicon);
+
+    const quickLinkTitle = document.createElement("h3");
+    quickLinkTitle.classList.add("quick-link-title");
+    quickLinkTitle.textContent = `${quickLinkData.title}`;
+    quickLinkFaviconTitleWrapper.appendChild(quickLinkTitle);
+    quickLink.appendChild(quickLinkFaviconTitleWrapper);
+
+    const quickLinkControls = document.createElement("div");
+    quickLinkControls.classList.add("quick-link-controls");
+
+    const removeQuickLinkButton = document.createElement("button");
+    removeQuickLinkButton.classList.add("remove-quick-link-button");
+    removeQuickLinkButton.type = "button";
+    removeQuickLinkButton.title = "Ta bort snabblänk";
+    removeQuickLinkButton.addEventListener("click", removeQuickLink);
+
+    const removeQuickLinkButtonIcon = document.createElement("i");
+    removeQuickLinkButtonIcon.classList.add("material-symbols-outlined");
+    removeQuickLinkButtonIcon.textContent = "do_not_disturb_on";
+    removeQuickLinkButton.appendChild(removeQuickLinkButtonIcon);
+
+    quickLinkControls.appendChild(removeQuickLinkButton);
+
+    const moveQuickLinkControls = document.createElement("div");
+    moveQuickLinkControls.classList.add("move-quick-link-controls");
+
+    const moveQuickLinkUpButton = document.createElement("button");
+    moveQuickLinkUpButton.classList.add("move-quick-link-up-button");
+    moveQuickLinkUpButton.type = "button";
+    moveQuickLinkUpButton.title = "Flytta up snabblänk";
+    moveQuickLinkUpButton.addEventListener("click", moveQuickLinkUp);
+
+    const moveQuickLinkUpButtonIcon = document.createElement("i");
+    moveQuickLinkUpButtonIcon.classList.add("material-symbols-outlined");
+    moveQuickLinkUpButtonIcon.textContent = "arrow_drop_up";
+    moveQuickLinkUpButton.appendChild(moveQuickLinkUpButtonIcon);
+    moveQuickLinkControls.appendChild(moveQuickLinkUpButton);
+
+    const moveQuickLinkDownButton = document.createElement("button");
+    moveQuickLinkDownButton.classList.add("move-quick-link-down-button");
+    moveQuickLinkDownButton.type = "button";
+    moveQuickLinkDownButton.title = "Flytta ner snabblänk";
+    moveQuickLinkDownButton.addEventListener("click", moveQuickLinkDown);
+
+    const moveQuickLinkDownButtonIcon = document.createElement("i");
+    moveQuickLinkDownButtonIcon.classList.add("material-symbols-outlined");
+    moveQuickLinkDownButtonIcon.textContent = "arrow_drop_down";
+    moveQuickLinkDownButton.appendChild(moveQuickLinkDownButtonIcon);
+    moveQuickLinkControls.appendChild(moveQuickLinkDownButton);
+
+    quickLinkControls.appendChild(moveQuickLinkControls);
+    quickLink.appendChild(quickLinkControls);
+
+    linkLlist.appendChild(quickLink);
+  });
 };
 
 loadQuickLinks();
