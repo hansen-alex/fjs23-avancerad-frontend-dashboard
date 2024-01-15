@@ -194,6 +194,10 @@ main.background {
   background-color: #b3b3b3;
 }
 
+.quick-link-controls i {
+  pointer-events: none;
+}
+
 .remove-quick-link-button {
   height: 50%;
   aspect-ratio: 1/1;
