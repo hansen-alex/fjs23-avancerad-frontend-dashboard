@@ -1,53 +1,37 @@
-import axios from "axios";
-
 const quickLinksList = document.querySelector(".quick-links-list");
 const addQuickLinkButton = document.querySelector(".add-quick-link-button");
 
-const quickLinksStorage = [
-  {
-    id: 1,
-    title: "Google",
-    url: "www.google.com",
-  },
-  {
-    id: 2,
-    title: "LinkedIn",
-    url: "www.linkedin.com",
-  },
-  {
-    id: 3,
-    title: "Youtube",
-    url: "www.youtube.com",
-  },
-  {
-    id: 4,
-    title: "Netflix",
-    url: "www.netflix.com",
-  },
-  //   {
-  //     id: 4,
-  //     title: "Twitch",
-  //     url: "www.twitch.tv",
-  //   },
-];
+const checkQuickLinkMoveButtons = () => {
+  //Reset all
+  quickLinksList.childNodes.forEach((quickLink) => {
+    const moveQuickLinkUpButton = quickLink.querySelector(
+      ".move-quick-link-up-button"
+    );
+    moveQuickLinkUpButton.classList.remove("move-quick-link-button-disabled");
+    moveQuickLinkUpButton.disabled = false;
 
-// if (quickLinksList.childElementCount > 0) {
-//     const moveQuickLinkUpButton = quickLinksList.firstChild.querySelector(
-//       ".move-quick-link-up-button"
-//     );
+    const moveQuickLinkDownButton = quickLink.querySelector(
+      ".move-quick-link-down-button"
+    );
+    moveQuickLinkDownButton.classList.remove("move-quick-link-button-disabled");
+    moveQuickLinkDownButton.disabled = false;
+  });
 
-//     moveQuickLinkUpButton.disabled = true;
-//     moveQuickLinkUpButton.classList.add("move-quick-link-button-disabled");
+  //Hide correct
+  if (quickLinksList.childElementCount > 0) {
+    const firstQuickLinkUpButton = quickLinksList.firstChild.querySelector(
+      ".move-quick-link-up-button"
+    );
+    firstQuickLinkUpButton.classList.add("move-quick-link-button-disabled");
+    firstQuickLinkUpButton.disabled = true;
 
-//     if (quickLinksList.childElementCount < 2) {
-//       const moveQuickLinkDownButton = quickLinksList.firstChild.querySelector(
-//         ".move-quick-link-down-button"
-//       );
-
-//       moveQuickLinkDownButton.disabled = true;
-//       moveQuickLinkDownButton.classList.add("move-quick-link-button-disabled");
-//     }
-//   }
+    const lastQuickLinkDownButton = quickLinksList.lastChild.querySelector(
+      ".move-quick-link-down-button"
+    );
+    lastQuickLinkDownButton.classList.add("move-quick-link-button-disabled");
+    lastQuickLinkDownButton.disabled = true;
+  }
+};
 
 const removeQuickLink = (event) => {
   event.preventDefault();
@@ -66,6 +50,7 @@ const removeQuickLink = (event) => {
   );
 
   quickLinksList.removeChild(quickLinkObject);
+  checkQuickLinkMoveButtons();
 };
 
 const moveQuickLinkUp = (event) => {
@@ -92,6 +77,7 @@ const moveQuickLinkUp = (event) => {
     userQuickLinks[previousSiblingIndex] = tempQuickLinkObject;
 
     localStorage.setItem("user-quick-links", JSON.stringify(userQuickLinks));
+    checkQuickLinkMoveButtons();
   }
 };
 
@@ -119,6 +105,7 @@ const moveQuickLinkDown = (event) => {
     userQuickLinks[nextSiblingIndex] = tempQuickLinkObject;
 
     localStorage.setItem("user-quick-links", JSON.stringify(userQuickLinks));
+    checkQuickLinkMoveButtons();
   }
 };
 
@@ -142,8 +129,7 @@ const loadSingleQuickLink = (quickLinkData) => {
 
   const quickLinkTitle = document.createElement("h3");
   quickLinkTitle.classList.add("quick-link-title");
-  //   quickLinkTitle.textContent = `${quickLinkData.title}`;
-  quickLinkTitle.textContent = `${quickLinkData.id}`;
+  quickLinkTitle.textContent = `${quickLinkData.title}`;
   quickLinkFaviconTitleWrapper.appendChild(quickLinkTitle);
   quickLink.appendChild(quickLinkFaviconTitleWrapper);
 
@@ -205,6 +191,7 @@ const loadQuickLinks = () => {
   userQuickLinks.forEach((quickLinkData) => {
     loadSingleQuickLink(quickLinkData);
   });
+  checkQuickLinkMoveButtons();
 };
 
 loadQuickLinks();
@@ -228,5 +215,6 @@ const addQuickLink = () => {
   );
 
   loadSingleQuickLink(newQuickLink);
+  checkQuickLinkMoveButtons();
 };
 addQuickLinkButton.addEventListener("click", addQuickLink);
