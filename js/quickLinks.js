@@ -1,6 +1,20 @@
 const quickLinksList = document.querySelector(".quick-links-list");
 const addQuickLinkButton = document.querySelector(".add-quick-link-button");
 
+const newQuickLinkForm = document.querySelector(".new-quick-link-form");
+const newQuickLinkCancel = document.querySelector(".new-quick-link-cancel");
+const newQuickLinkSubmit = document.querySelector(".new-quick-link-submit");
+const newQuickLinkTitle = document.querySelector("#new-quick-link-title");
+const newQuickLinkUrl = document.querySelector("#new-quick-link-url");
+const missingTitleErrorMessage = document.querySelector(
+  ".new-quick-link-title-wrapper h4"
+);
+const missingUrlErrorMessage = document.querySelector(
+  ".new-quick-link-url-wrapper h4"
+);
+
+//Extra TODO: add edit quick link below remove
+
 const checkQuickLinkMoveButtons = () => {
   //Reset all
   quickLinksList.childNodes.forEach((quickLink) => {
@@ -112,7 +126,12 @@ const moveQuickLinkDown = (event) => {
 const loadSingleQuickLink = (quickLinkData) => {
   const quickLink = document.createElement("a");
   quickLink.classList.add("quick-link");
-  quickLink.href = `http://${quickLinkData.url}`;
+  quickLink.href = `${
+    quickLinkData.url.startsWith("http://") ||
+    quickLinkData.url.startsWith("https://")
+      ? quickLinkData.url
+      : "http://" + quickLinkData.url
+  }`;
   quickLink.target = "_blank";
   quickLink.id = `${quickLinkData.id}`;
 
@@ -196,16 +215,46 @@ const loadQuickLinks = () => {
 
 loadQuickLinks();
 
-const addQuickLink = () => {
-  //get url from user
-  //get title from user
+const showAddNewQuickLink = () => {
+  newQuickLinkForm.style.display = "flex";
+  newQuickLinkTitle.value = "";
+  newQuickLinkUrl.value = "";
+
+  quickLinksList.style.display = "none";
+  addQuickLinkButton.style.display = "none";
+};
+addQuickLinkButton.addEventListener("click", showAddNewQuickLink);
+
+const hideAddNewQuickLink = () => {
+  newQuickLinkForm.style.display = "none";
+
+  quickLinksList.style.display = "flex";
+  addQuickLinkButton.style.display = "flex";
+
+  missingTitleErrorMessage.classList.remove("error-message-active");
+  missingUrlErrorMessage.classList.remove("error-message-active");
+};
+newQuickLinkCancel.addEventListener("click", hideAddNewQuickLink);
+
+const addQuickLink = (event) => {
+  event.preventDefault();
+
+  missingTitleErrorMessage.classList.remove("error-message-active");
+  missingUrlErrorMessage.classList.remove("error-message-active");
+  if (newQuickLinkTitle.value.length < 1 || newQuickLinkUrl.value.length < 1) {
+    if (newQuickLinkTitle.value.length < 1)
+      missingTitleErrorMessage.classList.add("error-message-active");
+    if (newQuickLinkUrl.value.length < 1)
+      missingUrlErrorMessage.classList.add("error-message-active");
+    return;
+  }
+
   const newQuickLink = {
     id: Date.now(),
-    title: "Google",
-    url: "www.google.com",
+    title: newQuickLinkTitle.value,
+    url: newQuickLinkUrl.value,
   };
 
-  //if pass
   const userQuickLinks =
     JSON.parse(localStorage.getItem("user-quick-links")) || [];
 
@@ -216,5 +265,6 @@ const addQuickLink = () => {
 
   loadSingleQuickLink(newQuickLink);
   checkQuickLinkMoveButtons();
+  hideAddNewQuickLink();
 };
-addQuickLinkButton.addEventListener("click", addQuickLink);
+newQuickLinkSubmit.addEventListener("click", addQuickLink);

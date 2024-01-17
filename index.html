@@ -32,6 +32,55 @@
               <i class="material-symbols-outlined"> add_circle </i> Lägg till
               länk
             </button>
+            <form class="new-quick-link-form">
+              <div class="new-quick-link-inputs">
+                <div class="new-quick-link-title-wrapper">
+                  <label for="new-quick-link-title">Snabblänk Titel</label>
+                  <input
+                    type="text"
+                    name="new-quick-link-title"
+                    id="new-quick-link-title"
+                    required
+                  />
+                  <div class="new-quick-link-error-message-wrapper">
+                    <h4 class="new-quick-link-error-message">
+                      Obligatoriskt fält
+                    </h4>
+                  </div>
+                </div>
+                <div class="new-quick-link-url-wrapper">
+                  <label for="new-quick-link-url">Snabblänk URL</label>
+                  <input
+                    type="text"
+                    name="new-quick-link-url"
+                    id="new-quick-link-url"
+                    required
+                  />
+                  <div class="new-quick-link-error-message-wrapper">
+                    <h4 class="new-quick-link-error-message">
+                      Obligatoriskt fält
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="new-quick-link-buttons">
+                <button
+                  class="new-quick-link-cancel"
+                  type="button"
+                  title="Avbryt"
+                >
+                  <i class="material-symbols-outlined"> cancel </i> Avbryt
+                </button>
+                <button
+                  class="new-quick-link-submit"
+                  type="submit"
+                  title="Lägg till"
+                >
+                  <i class="material-symbols-outlined"> check_circle </i> Lägg
+                  till
+                </button>
+              </div>
+            </form>
           </div>
           <div class="weather-module">
             <h2>Dagens väder</h2>
