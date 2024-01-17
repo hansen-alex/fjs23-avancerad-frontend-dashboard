@@ -39,6 +39,7 @@ main.background {
   min-height: 100vh;
   padding: 1.5rem 4rem;
   background-size: cover;
+  background-position: center;
 }
 
 .date-and-time {
