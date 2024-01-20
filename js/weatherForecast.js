@@ -28,6 +28,13 @@ const DAYS_FORECASTED = 14; //Max 16
 const weatherList = document.querySelector(".weather-list");
 const weatherLocationName = document.querySelector(".weather-location-name");
 
+const changeWeatherLocationSubmit = document.querySelector(
+  ".change-weather-location-submit"
+);
+const changeWeatherLocationInput = document.querySelector(
+  "#change-weather-location-input"
+);
+
 const geoLocationoptions = {
   maximumAge: 300000, //300,000 = 5min
   enableHighAccuracy: true,
@@ -35,6 +42,7 @@ const geoLocationoptions = {
 };
 
 const getWeatherIconFromCode = (weatherCode) => {
+  //WMO weather codes
   // 0	Clear sky
 
   // 1, 2 Mainly clear, partly cloudy
@@ -207,14 +215,13 @@ const getWeatherForecasts = async ({ latitude, longitude }, locationName) => {
 const searchForecastByLocation = async (locationName) => {
   await axios
     .get(
-      //TODO: maybe get better location names with other api that gives coords
       `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=1&language=sv&format=json`
     )
     .catch((error) => console.log(error))
     .then((json) => {
       if (!json.data.results) {
-        console.log("error, did not find");
-        console.log("TODO: display error");
+        weatherLocationName.textContent = "Plats hittades inte";
+        console.error("Could not find location");
         return;
       }
 
@@ -227,9 +234,7 @@ const geoLocationSuccess = (geoLocation) => {
 };
 
 const geoLocationerror = (error) => {
-  console.log(error);
-  console.log(error.code); //TODO: Display error, code 1 === user denied geolocation
-  return error;
+  console.error(error, error.code); //TODO: Display error, code 1 === user denied geolocation
 };
 
 //Gets local weather
@@ -239,4 +244,7 @@ navigator.geolocation.getCurrentPosition(
   geoLocationoptions
 );
 
-// searchForecastByLocation("Hudiksvall");
+changeWeatherLocationSubmit.addEventListener("click", (event) => {
+  event.preventDefault();
+  searchForecastByLocation(changeWeatherLocationInput.value);
+});
