@@ -12,7 +12,7 @@ const updateDateAndTime = () => {
     .toString()
     .padStart(2, "0")}`;
   dateText.textContent = `${currentDateAndTime.getDate()} ${currentDateAndTime.toLocaleString(
-    "default",
+    "sv-SE",
     { month: "long" }
   )} ${currentDateAndTime.getFullYear()}`;
 };
