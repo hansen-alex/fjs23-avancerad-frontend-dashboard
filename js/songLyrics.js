@@ -20,7 +20,7 @@ const getSongLyrics = async (event) => {
     )
     .catch((error) => {
       console.log(error.response.status, error.response.statusText);
-      songLyric.innerHTML = `Kunde inte hitta "${findSongLyricSongInput.value}" av "${findSongLyricArtistInput.value}".<br>Se till att du har stavat rätt!`;
+      songLyric.innerHTML = `Kunde inte hitta "${findSongLyricSongInput.value}" av "${findSongLyricArtistInput.value}".<br>Se till att du har stavat rätt!<br>Annars har vi tyvärr inte denna låt.`;
     })
     .then((json) => {
       if (!json) return;
