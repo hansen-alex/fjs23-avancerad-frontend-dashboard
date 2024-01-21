@@ -142,11 +142,13 @@ const displaySingleWeatherForecastDay = (
 
   const maxTemperature = document.createElement("p");
   maxTemperature.classList.add("max-temperature");
+  maxTemperature.title = "Högsta temperatur";
   maxTemperature.textContent = `${maxTempData} ${forecastDataUnits.temperature_2m_max}`;
   weatherListItemTemperature.appendChild(maxTemperature);
 
   const minTemperature = document.createElement("p");
   minTemperature.classList.add("min-temperature");
+  minTemperature.title = "Lägsta temperatur";
   minTemperature.textContent = `${minTempData} ${forecastDataUnits.temperature_2m_min}`;
   weatherListItemTemperature.appendChild(minTemperature);
   weatherListItem.appendChild(weatherListItemTemperature);
@@ -161,6 +163,7 @@ const displaySingleWeatherForecastDay = (
 
   const downfallSum = document.createElement("p");
   downfallSum.classList.add("downfall-sum");
+  downfallSum.title = "Nederbördsmängd";
   downfallSum.textContent = `${downfallSumData} ${forecastDataUnits.precipitation_sum}`;
   weatherListItemDownfall.appendChild(downfallSum);
   weatherListItem.appendChild(weatherListItemDownfall);
@@ -170,13 +173,14 @@ const displaySingleWeatherForecastDay = (
 
   const windDirection = document.createElement("i");
   windDirection.classList.add("wind-direction", "material-symbols-outlined");
+  windDirection.title = `Vindriktning ${windDirectionData}${forecastDataUnits.wind_direction_10m_dominant}`;
   windDirection.style.rotate = `${windDirectionData}deg`;
-  windDirection.title = `${windDirectionData}${forecastDataUnits.wind_direction_10m_dominant}`;
   windDirection.textContent = "north";
   weatherListItemWind.appendChild(windDirection);
 
   const windSpeed = document.createElement("p");
   windSpeed.classList.add("wind-speed");
+  windSpeed.title = "Högsta vindhastighet";
   windSpeed.textContent = `${Math.round(windSpeedData / 3.6)}m/s`;
   weatherListItemWind.appendChild(windSpeed);
   weatherListItem.appendChild(weatherListItemWind);
