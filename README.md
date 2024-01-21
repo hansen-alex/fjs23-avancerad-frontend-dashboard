@@ -2,10 +2,6 @@
 
 Alex Hansen
 
-## VG-fråga
-
-x
-
 ## Required API keys
 
 Skapa en "api-keys.json" fil i roten av projektet för api nycklar
@@ -15,3 +11,7 @@ Skapa en "api-keys.json" fil i roten av projektet för api nycklar
 {  
 "UNSPLASH_ACCESS_KEY": "..."  
 }
+
+## VG-fråga
+
+x
