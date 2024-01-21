@@ -3,14 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="icon" type="image/svg+xml" href="" /> -->
+    <link
+      rel="icon"
+      type="image"
+      href="https://avatars.githubusercontent.com/u/72140147?v=4"
+    />
     <link rel="stylesheet" href="./style.css" />
     <script src="./js/timeAndDate.js" defer></script>
     <script src="./js/dashboardUsername.js" defer></script>
-    <script type="module" src="./js/backgroundTheme.js" defer></script>
     <script src="./js/quickLinks.js" defer></script>
     <script src="./js/quickNotes.js" defer></script>
+    <script type="module" src="./js/backgroundTheme.js" defer></script>
     <script type="module" src="./js/weatherForecast.js" defer></script>
+    <script type="module" src="./js/songLyrics.js" defer></script>
     <title>Dashboard</title>
   </head>
   <body>
@@ -104,9 +109,37 @@
               </form>
             </div>
           </div>
-          <div class="custom-module">
-            <h2>Custom module</h2>
-            <!--https://github.com/public-apis/public-apis?tab=readme-ov-file#finance-->
+          <div class="song-lyric-module">
+            <h2>Sök låttexter</h2>
+            <p class="song-lyric"></p>
+            <form class="find-song-lyric">
+              <div class="artist-input-wrapper">
+                <label for="find-song-lyric-artist-input"
+                  ><i class="material-symbols-outlined"> artist </i></label
+                >
+                <input
+                  type="text"
+                  name="find-song-lyric-artist-input"
+                  id="find-song-lyric-artist-input"
+                  placeholder="Artist"
+                  required
+                />
+              </div>
+
+              <div class="song-input-wrapper">
+                <label for="find-song-lyric-song-input"
+                  ><i class="material-symbols-outlined"> lyrics </i></label
+                >
+                <input
+                  type="text"
+                  name="find-song-lyric-song-input"
+                  id="find-song-lyric-song-input"
+                  placeholder="Låtnamn"
+                  required
+                />
+              </div>
+              <button class="find-song-lyric-submit" type="submit">Sök</button>
+            </form>
           </div>
           <div class="notes-module">
             <label for="notes-text-area"><h2>Antäckningar</h2></label>
