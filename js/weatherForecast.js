@@ -238,7 +238,8 @@ const geoLocationSuccess = (geoLocation) => {
 };
 
 const geoLocationerror = (error) => {
-  console.error(error, error.code); //TODO: Display error, code 1 === user denied geolocation
+  console.error(error, error.code);
+  weatherLocationName.textContent = "Tillåt platsdata eller sök";
 };
 
 //Gets local weather
