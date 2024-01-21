@@ -318,12 +318,14 @@ main.background {
 }
 
 /*Weather module*/
-.weather-module {
+.dashboard-modules > div.weather-module h2 {
+  flex: unset;
 }
 
 .weather-list {
   display: flex;
   flex-direction: column;
+  flex: 3 1 0;
   width: 100%;
   gap: 0.75rem;
   overflow-y: scroll;
@@ -370,18 +372,8 @@ main.background {
   font-size: 1.25rem;
 }
 
-.weather-list-item-downfall {
-}
-
 .weather-list-item-downfall .weather-icon {
   font-size: 2rem;
-}
-
-.weather-list-item-wind {
-}
-
-.wind-direction {
-  /* rotate: 0deg; */
 }
 
 .weather-location {
@@ -392,8 +384,12 @@ main.background {
 }
 
 .weather-module .weather-location-name {
+  width: 95%;
+  padding-bottom: 0.5rem;
   font-size: 1.75rem;
-  /*TODO: ellipsis*/
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .change-weather-location {
