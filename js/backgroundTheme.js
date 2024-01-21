@@ -46,7 +46,7 @@ const setBackground = async (event) => {
 };
 backgroundThemeSubmitButton.addEventListener("click", setBackground);
 
-// setRandomBackground(); //Max 50 requests per hour so disabled for now
+setRandomBackground(); //Max 50 requests per hour
 
 const placeholderSuggestions = [
   "SAAB",
