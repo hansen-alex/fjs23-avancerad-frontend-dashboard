@@ -453,20 +453,20 @@ main.background {
 .find-song-lyric {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 8fr 2fr;
   width: 100%;
   gap: 0.25rem;
 }
 
 .artist-input-wrapper {
   display: flex;
-  grid-column: 1 / 7;
+  grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 
 .song-input-wrapper {
   display: flex;
-  grid-column: 1 / 7;
+  grid-column: 1 / 2;
   grid-row: 2 / 3;
 }
 
@@ -477,7 +477,7 @@ main.background {
 
 .find-song-lyric .find-song-lyric-submit {
   flex: 1 1 0;
-  grid-column: 7 / 9;
+  grid-column: 2 / 3;
   grid-row: 1 / 3;
   padding: 0.5rem 0.75rem;
   padding: 0;
