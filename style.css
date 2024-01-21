@@ -11,6 +11,8 @@
   margin: 0;
   border: 0;
   border-radius: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: normal;
   color: black;
@@ -18,8 +20,6 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: black;
 }
 
@@ -38,16 +38,18 @@ main.background {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 0.5rem;
+  gap: 2rem;
   background-size: cover;
   background-position: center;
+  overflow-x: hidden;
 }
 
 .dashboard-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  max-width: 100%;
   gap: 2rem;
 }
 
@@ -96,7 +98,8 @@ main.background {
 
 /*Modules base*/
 .dashboard-modules {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   width: 100%;
   gap: 1rem;
@@ -291,7 +294,6 @@ main.background {
 .new-quick-link-url-wrapper input {
   padding: 0.5rem;
   border-radius: 0.5rem;
-  font-family: inherit;
 }
 
 .new-quick-link-error-message-wrapper {
@@ -539,4 +541,20 @@ main.background {
   padding: 0.5rem;
   border-radius: 0.75rem;
   gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-main {
+    width: 90%;
+  }
+
+  .dashboard-modules {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1440px) {
+  .dashboard-modules {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
