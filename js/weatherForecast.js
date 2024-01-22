@@ -199,7 +199,7 @@ const getWeatherForecasts = async ({ latitude, longitude }, locationName) => {
 
       weatherLocationName.textContent = locationName
         ? `${locationName}`
-        : "Lokalt"; //TODO: find what place this is, we have long and lat here
+        : "Lokalt"; //Extra TODO: find what place this is, we have long and lat here
 
       for (let i = 0; i < DAYS_FORECASTED; i++) {
         displaySingleWeatherForecastDay(
